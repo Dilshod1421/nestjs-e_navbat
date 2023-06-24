@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
+import { Request } from 'express';
+import { UpdatePassAdminDto } from './dto/updatePass-admin.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -11,6 +13,16 @@ export class AdminController {
   create(@Body() createAdminDto: CreateAdminDto) {
     return this.adminService.create(createAdminDto);
   }
+
+  @Post()
+  updatePass(@Body() updatePassAdminDto: UpdatePassAdminDto,
+  @Req() request: Request) {
+    let auth = request.headers.authorization
+return this.adminService.updatePass(updatePassAdminDto, auth)
+  }
+  
+  
+
 
   @Get()
   findAll() {

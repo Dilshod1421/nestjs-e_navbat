@@ -1,15 +1,23 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SpecialistService } from './specialist.service';
-import { CreateSpecialistDto } from './dto/create-specialist.dto';
+import { AuthSpecialistDto } from './dto/auth-specialist.dto';
 import { UpdateSpecialistDto } from './dto/update-specialist.dto';
-
+import { VerifyOtpDto } from '../otp/dto/verifyOtp.dto';
 @Controller('specialist')
 export class SpecialistController {
   constructor(private readonly specialistService: SpecialistService) {}
 
-  @Post()
-  create(@Body() createSpecialistDto: CreateSpecialistDto) {
-    return this.specialistService.create(createSpecialistDto);
+
+
+  @Post('auth')
+  auth(@Body() authSpecialistDto: AuthSpecialistDto) {
+    return this.specialistService.auth(authSpecialistDto);
+  }
+
+
+  @Post('verifyotp')
+  verifyOtp(@Body() verifyOtpDto: VerifyOtpDto) {
+    return this.specialistService.verifyOtp(verifyOtpDto);
   }
 
   @Get()
@@ -19,16 +27,16 @@ export class SpecialistController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.specialistService.findOne(+id);
+    return this.specialistService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSpecialistDto: UpdateSpecialistDto) {
-    return this.specialistService.update(+id, updateSpecialistDto);
+  updateSpecialist(@Param('id') id: string, @Body() updateSpecialistDto: UpdateSpecialistDto) {
+    return this.specialistService.updateSpecialist(id, updateSpecialistDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.specialistService.remove(+id);
+    return this.specialistService.remove(id);
   }
 }

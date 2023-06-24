@@ -18,17 +18,17 @@ export class OtpController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.otpService.findOne(+id);
+  findOneById(@Param('id') id: string) {
+    return this.otpService.findOneById(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOtpDto: UpdateOtpDto) {
-    return this.otpService.update(+id, updateOtpDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateOtpDto: UpdateOtpDto) {
+  //   return this.otpService.update(id, updateOtpDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.otpService.remove(+id);
+    return this.otpService.remove(id);
   }
 }

@@ -1,28 +1,21 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { HydratedDocument } from "mongoose";
+import { HydratedDocument} from "mongoose";
 
-export type TokenDocument = HydratedDocument<Token>;
+export type tokenDokument = HydratedDocument<Token>
+
 
 @Schema()
 export class Token {
-    @Prop()
+    @Prop({required: true})
     table_name: string;
-
-    @Prop([
-        { type: mongoose.Schema.Types.ObjectId, ref: 'Admin' },
-        { type: mongoose.Schema.Types.ObjectId, ref: 'Specialist' },
-        { type: mongoose.Schema.Types.ObjectId, ref: 'Client' }
-    ])
-    user_id: mongoose.Schema.Types.ObjectId;
-
-    @Prop()
+    @Prop({required: true})
+    user_id: string;
+    @Prop({default: null})
     user_os: string;
-
-    @Prop()
+    @Prop({default: null})
     user_device: string;
-
-    @Prop()
+    @Prop({required: true})
     hashed_refresh_token: string;
 }
 
-export const TokenSchema = SchemaFactory.createForClass(Token);
+export const TokenSchema = SchemaFactory.createForClass(Token)

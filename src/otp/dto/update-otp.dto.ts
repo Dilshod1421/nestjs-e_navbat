@@ -1,4 +1,8 @@
-export class UpdateOtpDto {
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateOtpDto } from './create-otp.dto';
+
+export class UpdateOtpDto{
     otp?: string;
-    expirition_time?: Date;
+    verified?: boolean;
+    expiretion_time?: string
 }

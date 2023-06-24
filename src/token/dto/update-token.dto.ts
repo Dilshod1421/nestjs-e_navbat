@@ -1,6 +1,4 @@
-export class UpdateTokenDto {
-    table_name?: string;
-    user_id?: string;
-    user_os?: string;
-    user_device?: string;
-}
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateTokenDto } from './create-token.dto';
+
+export class UpdateTokenDto extends PartialType(CreateTokenDto) {}

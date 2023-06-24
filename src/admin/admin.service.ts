@@ -1,18 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
-import { InjectModel } from '@nestjs/mongoose';
-import { Admin, AdminDocument } from './schemas/admin.schema';
-import { Model } from 'mongoose';
 
 @Injectable()
 export class AdminService {
-  constructor(
-    @InjectModel(Admin.name) private adminModel: Model<AdminDocument>,
-  ) { };
-
   create(createAdminDto: CreateAdminDto) {
+
+    
     return 'This action adds a new admin';
+  }
+
+  async updatePass (updatePassAdminDto: UpdateAdminDto, auth: any){
+    
+  }
+
   }
 
   findAll() {

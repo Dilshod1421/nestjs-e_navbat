@@ -1,24 +1,22 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Schema } from '@nestjs/mongoose';
 import { HydratedDocument } from "mongoose";
 
-export type AdminDocument = HydratedDocument<Admin>;
+
+export type AdminDocment = HydratedDocument<Admin>
 
 @Schema()
 export class Admin {
-    @Prop()
+    @Prop({required: true})
     admin_name: string;
-
-    @Prop({ required: true })
+    @Prop({required: true})
     admin_phone_number: string;
-
-    @Prop()
+    @Prop({required: true})
     admin_hashed_password: string;
-
-    @Prop({ default: false })
-    admin_is_active: boolean;
-
-    @Prop({ default: false })
-    admin_is_creator: boolean;
+    @Prop({default: true})
+    admin_is_active: string;
+    @Prop({default: false})
+    admin_is_creator: string;
 }
 
-export const AdminSchema = SchemaFactory.createForClass(Admin);
+export const AdminSchema = SchemaFactory.createForClass(Admin)
